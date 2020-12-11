@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import react, {Component} from 'react';
+import ListItems from './ListItems';
 
 class App extends Component {
   constructor(props){
@@ -29,8 +30,10 @@ class App extends Component {
     e.preventDefault();
     const newItem = this.state.currentItem;
     let {items}=this.state;
+    if (newItem.text!=""){
     items.push(newItem);
-    this.setState({items});
+    this.setState({items: items,currentItem:{text: '', key: ''}});
+    }
   }
 
 
@@ -44,6 +47,7 @@ class App extends Component {
             <button type='submit'>+</button>
           </form>
         </header>
+        <ListItems items={this.state.items}></ListItems>
       </div>
     );
   }
